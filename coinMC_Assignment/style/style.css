@@ -1,0 +1,16 @@
+
+#logo{
+  height: 75px;
+  width: 110px;
+  padding-right: 1px;
+  margin-right: 0px;
+  margin-left: 70px;
+  margin-top: 50px;
+}
+
+#logo_name{
+  margin-top: 70px;
+  font-family: 'Rowdies', cursive;
+  font-weight: bold;
+
+}
