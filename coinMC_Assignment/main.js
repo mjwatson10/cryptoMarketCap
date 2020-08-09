@@ -1,18 +1,23 @@
-
-
 //API's
 let BASE_URL = "https://api.coingecko.com/api/v3";
 
 let COINS_LISTED = "/coins/list";
 let COINS_MARK_PRICE = "/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h";
+let EXCHANGE_DATA = "/exchanges";
 
 let allCoins = BASE_URL + COINS_LISTED;
 let priceData = BASE_URL + COINS_MARK_PRICE;
+let getExhangeData = BASE_URL + EXCHANGE_DATA;
 
 
-let sortDirection = false;
 
-fetch(priceData)
+$('#searchInput').on('keyup', function(){
+  var value = $(this).val()
+  console.log('Value:', value)
+})
+
+//coin data
+  fetch(priceData)
   .then(res => {
 
     res.json().then(data => {
@@ -22,59 +27,68 @@ fetch(priceData)
       for (var i = 0; i < data.length; i++) {
 
 
-
         loopData += `<tr>
                         <td>${data[i].market_cap_rank}</td>
-                        <td><img id="coinLogos" src="${data[i].image}">${data[i].id}</td>
+                        <td><img class="companyImage" src="${data[i].image}">${data[i].id}</td>
                         <td>${"$" + new Intl.NumberFormat().format(data[i].market_cap)}</td>
                         <td>${"$" + new Intl.NumberFormat().format(data[i].current_price)}</td>
                         <td>${"$" + new Intl.NumberFormat().format(data[i].total_volume)}</td>
                         <td>${new Intl.NumberFormat().format(data[i].circulating_supply)}</td>
-                        <td>${new Intl.NumberFormat().format(data[i].price_change_percentage_24h_in_currency) + "%"}</td>
+                        <td class=${data[i].price_change_percentage_24h_in_currency > 0 ? "green": "red"}>${new Intl.NumberFormat().format(data[i].price_change_percentage_24h_in_currency) + "%"}</td>
                       </tr>`;
 
-                     if (data[i].price_change_percentage_24h_in_currency > 0) {
-                        $(new Intl.NumberFormat().format(data[i].price_change_percentage_24h_in_currency) + "%").css("color", "green");
-                      } else {
-                        $(new Intl.NumberFormat().format(data[i].price_change_percentage_24h_in_currency) + "%").css("color", "red");
-                      }
-        console.log(data[i].market_cap_rank, data[i].id,  data[i].market_cap);
-
       }
-        $("#tableData").html(loopData);
-
-
-
-
-
-      //`<tr><td>${coin.market_cap_rank}</td><td>${coin.id}</td><td>${coin.market_cap}</td></tr>`;
-
+      $("#tableData").html(loopData);
     })
   })
 
-/*let personData = [
-    {rank: 1, name: 'Bitcoin', marketCap: 33139},
-    {rank: 2, name: 'Bitcoin', marketCap: 33139},
-    {rank: 3, name: 'Bitcoin', marketCap: 33139},
-    {rank: 4, name: 'Bitcoin', marketCap: 33139},
-    {rank: 5, name: 'Bitcoin', marketCap: 33139}
-];
 
-$(document).ready(function(){
-  loadTableData(personData)
+
+//exchange data
+  fetch(getExhangeData)
+    .then(res => {
+
+      res.json().then(data => {
+
+          var loopExhange = '';
+
+        for (var i = 0; i < data.length; i++) {
+
+
+          loopExhange += `<tr>
+                          <td>${data[i].trust_score_rank}</td>
+                          <td><img class="companyImage" src="${data[i].image}">${data[i].name}</td>
+                          <td>${"$" + new Intl.NumberFormat().format(data[i].trade_volume_24h_btc_normalized)}</td>
+                          <td><a id="xWebsites" href=${data[i].url} target="null">${data[i].url}</td>
+                          <td>${data[i].country}</td>
+                          <td>${data[i].year_established}</td>
+                        </tr>`;
+
+                      }
+                      $("#exchangeTable").html(loopExhange);
+                    })
+                  })
+
+      /*  $('th').on('click', function(){
+          var column = $(this).data('column');
+          var order = $(this).data('order');
+          console.log("column was clicked", column, order);
+
+            if (order == 'desc') {
+              $(this).data('order', "asc");
+              loopData = loopData.sort((a,b) => a[column] > b[column] ? 1 : -1);
+            }else{
+              $(this).data('order', "desc")
+              loopData = loopData.sort((a,b) => a[column] < b[column] ? 1 : -1);
+            }
+            buildPrice(priceData);
+        }) */
+
+//nav bar
+  $('#myTab a').on('click', function (e) {
+  e.preventDefault()
+  $(this).tab('show')
 });
 
-
-
-function loadTableData(personData) {
-  const tableBody = document.getElementById("tableData");
-  let dataHTML = '';
-
-  for(let coin of personData) {
-    dataHTML += `<tr><td>${coin.rank}</td><td>${coin.name}</td><td>${coin.marketCap}</td></tr>`;
-  }
-
-  console.log(dataHTML);
-
-  tableData.innerHTML = dataHTML;
-} */
+$('#myTab a[href="#market"]').tab('show');
+$('#myTab a[href="#exchange"]').tab('show');

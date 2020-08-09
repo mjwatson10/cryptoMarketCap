@@ -6,13 +6,9 @@
 
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
     <link rel="stylesheet" type="text/css" href="style/style.css">
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script src="main.js"></script>
 
 
     <style>@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap');</style>
@@ -22,7 +18,7 @@
 
 <!-- logo -->
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-10">
 
         <p style="float: left; clear: left"><img src="https://image.flaticon.com/icons/svg/2091/2091688.svg" id="logo"</p>
         <h3 id="logo_name">CRYPTO CAPITOL</h3>
@@ -39,31 +35,117 @@
 
         <h1>Top 100 Cryptocurrencies By MarketCap</h1>
 
+
       </div>
 
     </div>
 
 
 <!-- tabs -->
-    <div class="row">
+<div class="row">
 
-      <div class="col-sm-9" id="tabNav">
+  <div class="col-sm-11" id="navBar">
 
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">MarketCap</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Exchanges</a>
-            </li>
-          </ul>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-toggle="tab" href="#marketTab1" role="tab" aria-controls="market" aria-selected="true">Market Cap</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="exchange-tab" data-toggle="tab" href="#exchange1" role="tab" aria-controls="exchange" aria-selected="false">Exchanges</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="marketTab1" role="tabpanel" aria-labelledby="marketCap-tab">
+
+            <!-- table -->
+
+            <!-- market cap -->
+            <div class="row">
+
+              <div class="col-sm-12 chartData">
+
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <div class="col-sm-2">
+                            <th scope="col" id="rank" data-column="rank" data-order="desc">Rank</th>
+                        </div>
+                        <div class="col-sm-2">
+                            <th scope="col" id="name" data-column="name" data-order="desc">Name</th>
+                        </div>
+                        <div class="col-sm-3">
+                            <th scope="col" id="marketCap" data-column="marketCap"data-order="desc">Market Cap</th>
+                        </div>
+                        <div class="col-sm-1">
+                            <th scope="col" id="price" data-column="price" data-order="desc">Price</th>
+                        </div>
+                        <div class="col-sm-1">
+                            <th scope="col" id="volume" data-column="volume" data-order="desc">Volume(24hrs)</th>
+                        </div>
+                        <div class="col-sm-1">
+                            <th scope="col" id="supply" data-column="supply" data-order="desc">Circulating Supply</th>
+                        </div>
+                        <div class="col-sm-1">
+                            <th scope="col" id="change" data-column="change" data-order="desc">Change(24hrs)</th>
+                        </div>
+                      </tr>
+                    </thead>
+                    <tbody id="tableData">
+
+                    </tbody>
+                  </table>
+
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="tab-pane fade" id="exchange1" role="tabpanel" aria-labelledby="exchange-tab">
+
+            <!-- exchanges -->
+            <div class="row">
+              <div class="col-sm-12 chartData">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <div class="col-sm-2">
+                          <th scope="col" id="rank">Rank</th>
+                      </div>
+                      <div class="col-sm-1">
+                          <th scope="col" id="name">Name</th>
+                      </div>
+                      <div class="col-sm-3">
+                          <th scope="col" id="tradeVol">Trading Volume(24hrs)</th>
+                      </div>
+                      <div class="col-sm-1">
+                          <th scope="col" id="website">Website</th>
+                      </div>
+                      <div class="col-sm-1">
+                          <th scope="col" id="country">Country</th>
+                      </div>
+                      <div class="col-sm-1">
+                          <th scope="col" id="yearEst">Year Established</th>
+                      </div>
+                    </tr>
+                  </thead>
+                  <tbody id="exchangeTable">
+
+                  </tbody>
+                </table>
+
+              </div>
+
+            </div>
+          </div>
+          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+        </div>
+
 
       </div>
+</div>
 
-    </div>
-
-
-<!-- table -->
+<!-- table
     <div class="row">
 
       <div class="col-sm-9" id="chartData">
@@ -102,7 +184,14 @@
       </div>
 
     </div>
+  -->
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="main.js"></script>
 
   </body>
 </html>
