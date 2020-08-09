@@ -38,7 +38,7 @@ $('#searchInput').on('keyup', function(){
                       </tr>`;
 
       }
-      $("#tableData").html(loopData);
+      $("#tableData").html(loopData); 
     })
   })
 
